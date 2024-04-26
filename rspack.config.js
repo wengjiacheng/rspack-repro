@@ -1,9 +1,10 @@
 const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const CSSSplitWebpackPluginFix = require("./css-split-plugin/polyfill");
+const createThemeColorReplacerPlugin = require("./theme-plugin.config");
 
 module.exports = {
+  mode: "development",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "webpack-dist"),
@@ -39,9 +40,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html",
     }),
-    new CSSSplitWebpackPluginFix({
-      size: 4000,
-      filename: "css/[name]-[part].[ext]",
-    }),
+    createThemeColorReplacerPlugin(),
   ],
 };
