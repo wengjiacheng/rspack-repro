@@ -4,7 +4,7 @@ const path = require("path");
 const createThemeColorReplacerPlugin = require("./theme-plugin.config");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "webpack-dist"),
@@ -30,4 +30,7 @@ module.exports = {
     }),
     createThemeColorReplacerPlugin(),
   ],
+  optimization: {
+    minimize: false,
+  },
 };
